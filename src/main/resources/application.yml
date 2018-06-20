@@ -1,5 +1,5 @@
 baseUrl : https://kr.api.riotgames.com/
-fbAccessToken : EAAHLpxwzM0MBADkd6os5yWFqSpzBTOdcX1lZAZAWMV0bBVMHFeddsec4c4ZAnbCdmWWOBiAQhicVm58Eukg6qdtE7nsbmj7diARe4dDmvZBfwcmWpxxYyYlfRHpEN3TWyW9LWAY6pr7B1GiOpOFJiTxYxoPgX5EpaDjRKQlfi37raUNWfEXx
+fbAccessToken : EAAYWcUpjzx4BAH8yFFlBneneDWX4meThPonyreEX0Dm9a7OQDeC1p2HX9FAcIbWqCSGoHxsBZC1r2MN1ATon8mOrlBh3NNEQcrhnR14CyroOEjTtHZBEnU5YZCpYWUnkadzPrgpTR6hqpO1SWAt5rdZC94WWi3sbMGFknqHBZC0ZCZB8hLwleApNzOgGjjxtMYZD
 exchangeNumber : +82
 fbUrl : https://graph.facebook.com/v2.6/
 lolImgUrl : http://ddragon.leagueoflegends.com/cdn/img/champion/splash/
@@ -17,14 +17,14 @@ spring:
   application:
     name: "@pom.artifactId@"
   jpa:
-   generate-ddl: false
+   generate-ddl: true
    show-sql: false
       
   datasource:
     driverClassName: org.mariadb.jdbc.Driver
-    url: jdbc:mariadb://localhost:3306/lolhuni
-    username: lolhuni
-    password: 'cola12#$'
+    url: jdbc:mariadb://127.0.0.1:3306/loltracer
+    username:
+    password:
 
 ---
 
@@ -33,9 +33,9 @@ spring:
   
   datasource:
     driverClassName: org.mariadb.jdbc.Driver
-    url: jdbc:mariadb://13.124.165.240:3306/lolhuni
-    username: lolhuni
-    password: 'allmeat12#$'
+    url: jdbc:mariadb://127.0.0.1:3306/loltracer
+    username:
+    password:
     tomcat:
      test-while-idle: true
      validation-query: SELECT 1
