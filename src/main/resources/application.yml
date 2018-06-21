@@ -1,5 +1,5 @@
 baseUrl : https://kr.api.riotgames.com/
-lineNotifyAccessToken : TVJPRINgQFSDzR6JThuDSNKcK1pGCbTKWCf1aBewpz2
+lineNotifyAccessToken : 
 lineNotifyUrl : https://notify-api.line.me/
 lolImgUrl : http://ddragon.leagueoflegends.com/cdn/img/champion/splash/
 victoryImg : https://github.com/elky84/loltracer/blob/master/assets/victory.png?raw=true
@@ -23,7 +23,7 @@ spring:
     driverClassName: org.mariadb.jdbc.Driver
     url: jdbc:mariadb://172.30.1.34:3306/loltracer
     username:
-    password: 
+    password:
 
 ---
 
