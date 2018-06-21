@@ -50,14 +50,6 @@ public class User {
 		this.name = name;
 	}
 
-	public String getTel() {
-		return tel;
-	}
-
-	public void setTel(String tel) {
-		this.tel = tel;
-	}
-
 	public Date getRegDate() {
 		return regDate;
 	}

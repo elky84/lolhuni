@@ -63,21 +63,15 @@ public class TestController {
     }
 	
 	/**
-	 * 페이스북 메시지 테스트
+	 * 라인 메시지 테스트
 	 * @param message
 	 * @return
 	 */
-	@ApiOperation("페이스북 메시지 테스트")
-	@RequestMapping(value = "fbMessage", method = RequestMethod.POST)
+	@ApiOperation("라인 메시지 테스트")
+	@RequestMapping(value = "lineMessage", method = RequestMethod.POST)
 	@ResponseBody
-	public ResponseEntity<?> sendFbMessage(@RequestBody String message, @RequestParam String phoneNumber) {
-		
-		if (phoneNumber == null || phoneNumber.length() != 11) {
-			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-		}
-		
-		lolService.sendFbMessage("[페이스북 메시지 테스트용]" + message, convertTel(phoneNumber));
-		
+	public ResponseEntity<?> sendLineMessage(@RequestBody String message, @RequestParam String imgUrl) {
+		lolService.sendLineMessage(message, imgUrl);
 		return new ResponseEntity<>(HttpStatus.OK);
 		
 	}
@@ -109,10 +103,4 @@ public class TestController {
 		return new ResponseEntity<Champion>(champion,HttpStatus.OK);
 		
 	}
-	
-	public String convertTel(String tel) {
-		return "+82(" + tel.substring(0,3) + ")" + tel.substring(3,7) + "-" + tel.substring(7);
-	}
-	
-
 }

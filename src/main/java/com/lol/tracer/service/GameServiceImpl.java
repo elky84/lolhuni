@@ -151,11 +151,11 @@ public class GameServiceImpl implements GameService {
 		}
 		
 		logger.debug("### {}님은 현재 {}(으)로 게임 중입니다.",summoner.getName(),championName);
-		String title = summoner.getName() + "님은 현재 " + championName + "(으)로 게임 중입니다.";
+		String message = summoner.getName() + "님은 현재 " + championName + "(으)로 게임 중입니다.";
 		for (Target target : targets) {
 			User user = userService.getUser(target.getUserNo());
 			if (user != null) {
-				lolService.sendFbMessageWithTemplate(user.getTel(),championImageUrl,title,"");
+				lolService.sendLineMessage(message,championImageUrl);
 			}
 					
 		}
@@ -213,7 +213,7 @@ public class GameServiceImpl implements GameService {
 			
 		}
 		
-		String title = summoner.getName() + "님이 " + win  + "하셨습니다.\\r";
+		String title = summoner.getName() + "님이 " + win  + "하셨습니다.";
 		String subTitle = "";
 		
 		if (player != null) {
@@ -229,7 +229,7 @@ public class GameServiceImpl implements GameService {
 			User user = userService.getUser(target.getUserNo());
 
 			if (user != null) {
-				lolService.sendFbMessageWithTemplate(user.getTel(),resultImgUrl,title,subTitle);
+				lolService.sendLineMessage(title, resultImgUrl);
 				send = true;
 			}
 			

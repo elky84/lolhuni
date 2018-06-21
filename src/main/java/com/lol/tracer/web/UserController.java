@@ -28,13 +28,13 @@ public class UserController {
 	@RequestMapping(value = "/users", method = RequestMethod.POST)
 	@ResponseBody
 	@ApiOperation("회원 등록")
-	public ResponseEntity<?> registUser(@RequestParam String name, @RequestParam String tel, @RequestParam String summonerName) {
+	public ResponseEntity<?> registerUser(@RequestParam String name, @RequestParam String summonerName) {
 		
 		try {
-			User user = userService.registUser(name, tel, summonerName);
+			User user = userService.registerUser(name, summonerName);
 			
 			if (user != null) {
-				return new ResponseEntity<User>(user,HttpStatus.CREATED);
+				return new ResponseEntity<>(user,HttpStatus.CREATED);
 			} else {
 				return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 			}

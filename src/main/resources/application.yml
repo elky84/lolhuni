@@ -1,10 +1,9 @@
 baseUrl : https://kr.api.riotgames.com/
-fbAccessToken : EAAYWcUpjzx4BAH8yFFlBneneDWX4meThPonyreEX0Dm9a7OQDeC1p2HX9FAcIbWqCSGoHxsBZC1r2MN1ATon8mOrlBh3NNEQcrhnR14CyroOEjTtHZBEnU5YZCpYWUnkadzPrgpTR6hqpO1SWAt5rdZC94WWi3sbMGFknqHBZC0ZCZB8hLwleApNzOgGjjxtMYZD
-exchangeNumber : +82
-fbUrl : https://graph.facebook.com/v2.6/
+lineNotifyAccessToken : TVJPRINgQFSDzR6JThuDSNKcK1pGCbTKWCf1aBewpz2
+lineNotifyUrl : https://notify-api.line.me/
 lolImgUrl : http://ddragon.leagueoflegends.com/cdn/img/champion/splash/
-victoryImg : https://github.com/HyeonJung/lolhuni/blob/master/assets/victory.png?raw=true
-defeatImg : https://github.com/HyeonJung/lolhuni/blob/master/assets/defeat.png?raw=true
+victoryImg : https://github.com/elky84/loltracer/blob/master/assets/victory.png?raw=true
+defeatImg : https://github.com/elky84/loltracer/blob/master/assets/defeat.png?raw=true
 
 logging:
   config: classpath:logback.xml
@@ -22,9 +21,9 @@ spring:
       
   datasource:
     driverClassName: org.mariadb.jdbc.Driver
-    url: jdbc:mariadb://127.0.0.1:3306/loltracer
+    url: jdbc:mariadb://172.30.1.34:3306/loltracer
     username:
-    password:
+    password: 
 
 ---
 

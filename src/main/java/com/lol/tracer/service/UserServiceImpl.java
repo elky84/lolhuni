@@ -20,19 +20,12 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	SummonerService summonerService;
 	
-	@Override
 	@Transactional
-	public User registUser(String name, String tel, String summonerName) {
-		
-		if (tel.length() != 11) {
-			return null;
-		}
-		
+	public User registerUser(String name, String summonerName) {
 		Summoner summoner = summonerService.summonerInfo(summonerName);
 		
 		User user = new User();
 		user.setName(name);
-		user.setTel(convertTel(tel));
 		user.setRegDate(new Date());
 		user.setSummoner(summoner);
 		userRepository.save(user);

@@ -12,13 +12,11 @@ public interface LoLService {
 	
 	CurrentGameInfo getGameInfo(long summonerId);
 	
-	void sendFbMessage(String message, String phoneNumber);
+	void sendLineMessage(String message, String imgUrl);
 	
 	RecentGamesDto recentGameInfo(long summonerId);
 	
 	MatchDto getMatchInfo(long matchId);
 
 	ChampionListDto getChampionList();
-	void sendFbMessageWithTemplate(String phoneNumber, String imageUrl, String title, String subTitle);
-	void sendFbMessageWithTemplateButton(String phoneNumber, String imageUrl, String title, String subTitle);
 }

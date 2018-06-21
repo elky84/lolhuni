@@ -9,11 +9,10 @@ public interface UserService {
 	/**
 	 * 유저 등록
 	 * @param name
-	 * @param tel
 	 * @param summonerName
 	 * @return
 	 */
-	User registUser(String name, String tel, String summonerName);
+	User registerUser(String name, String summonerName);
 	
 	/**
 	 * 유저목록
