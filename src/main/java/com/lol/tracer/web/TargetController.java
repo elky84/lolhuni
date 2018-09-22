@@ -24,7 +24,7 @@ public class TargetController {
 	@RequestMapping(value = "/targets", method = RequestMethod.POST)
 	@ResponseBody
 	@ApiOperation("타겟 등록")
-	public ResponseEntity<?> registTarget(@RequestParam String summonerName) {
+	public ResponseEntity<?> target(@RequestParam String summonerName) {
 		
 		try {
 			Target target = targetService.registTarget(summonerName);
@@ -48,11 +48,28 @@ public class TargetController {
 	@RequestMapping(value = "/targets", method = RequestMethod.GET)
 	@ResponseBody
 	@ApiOperation("타겟 목록")
-	public ResponseEntity<?> targetList() {
+	public ResponseEntity<?> list() {
 		
 		try {
 			List<Target> targets = targetService.getTargets();
 			return new ResponseEntity<>(targets,HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+
+	/**
+	 * 등록된 소환사 삭제
+	 * @return
+	 */
+	@RequestMapping(value = "/targets/{summonerId}", method = RequestMethod.DELETE)
+	@ResponseBody
+	@ApiOperation("타겟 삭제")
+	public ResponseEntity<?> delete(@PathVariable("summonerId") long summonerId) {
+
+		try {
+			targetService.removeTarget(summonerId);
+			return new ResponseEntity<>(HttpStatus.OK);
 		} catch (Exception e) {
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
