@@ -27,7 +27,6 @@ public class SwaggerConfig {
 	                .apiInfo(apiInfo())
 				.tags(new Tag("KeyApi","키 관련 API"),
 						new Tag("SummonerApi","소환사 관련 API"),
-						new Tag("UserApi","유저 관련 API"),
 						new Tag("TargetApi", "타겟 API"),
 						new Tag("TestApi", "테스트용 API"));
 	}
@@ -35,11 +34,11 @@ public class SwaggerConfig {
 	private ApiInfo apiInfo() {
 
 		return new ApiInfo(
-                "LOLHUNI REST API" 
+                "LOL Tracer REST API"
                 , "REST API Document"
                 , "1.0.0"
                 , "Terms of service"
-                , new Contact("lolhuni", "", "yhhj1592@gmail.com")
+                , new Contact("loltracer", "https://github.com/elky84/loltracer", "elky84@gmail.com")
                 , ""
                 , "");
 	}
