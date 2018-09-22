@@ -214,7 +214,7 @@ public class GameServiceImpl implements GameService {
 			}
 		}
 		
-		lolService.sendLineMessage(title + " " + subTitle, resultImgUrl);
+		lolService.sendLineMessage(title + "\n" + subTitle, resultImgUrl);
 
 		game.setResultNotification(Notification.PUSH);
 		saveGame(game);
@@ -246,7 +246,7 @@ public class GameServiceImpl implements GameService {
 		
 		String message = "KDA = ";
 		message += perfect ? "Perfect" : average;
-		message += " (" + kill + "/" + death + "/" + assists + ")\\r";
+		message += " (" + kill + "/" + death + "/" + assists + ")\n";
 		message += "킬관여율 = " + ratio + "%";
 		return message;
 	}
