@@ -8,8 +8,6 @@ import lombok.Setter;
 import java.util.List;
 
 @Data
-@Setter
-@Getter
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class CurrentGameParticipant {
 	private long teamId;

@@ -1,5 +1,0 @@
-CREATE DATABASE IF NOT EXISTS `lolhuni` COLLATE 'utf8_general_ci';
-
-create user 'lolhuni'@'%' identified by 'cola12#$';
-
-grant all privileges on lolhuni.* to 'lolhuni'@'%';

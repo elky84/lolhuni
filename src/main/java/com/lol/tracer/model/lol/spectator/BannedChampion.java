@@ -6,8 +6,6 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Data
-@Getter
-@Setter
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class BannedChampion {
 	private long championId;
