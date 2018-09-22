@@ -15,8 +15,10 @@ import javax.persistence.TableGenerator;
 
 import com.lol.tracer.model.data.Notification;
 import com.lol.tracer.model.lol.Summoner;
+import lombok.Data;
 
 @Entity(name = "games")
+@Data
 public class Game {
 	
 	@Id
@@ -44,70 +46,4 @@ public class Game {
 	
 	@Column
 	private long teamId;
-
-	public long getGameId() {
-		return gameId;
-	}
-
-	public void setGameId(long gameId) {
-		this.gameId = gameId;
-	}
-
-	public Summoner getSummoner() {
-		return summoner;
-	}
-
-	public void setSummoner(Summoner summoner) {
-		this.summoner = summoner;
-	}
-
-	public Notification getPlayNotification() {
-		return playNotification;
-	}
-
-	public void setPlayNotification(Notification playNotification) {
-		this.playNotification = playNotification;
-	}
-
-	public Notification getResultNotification() {
-		return resultNotification;
-	}
-
-	public void setResultNotification(Notification resultNotification) {
-		this.resultNotification = resultNotification;
-	}
-
-	public long getGameNo() {
-		return gameNo;
-	}
-
-	public void setGameNo(long gameNo) {
-		this.gameNo = gameNo;
-	}
-
-	public Date getRegDate() {
-		return regDate;
-	}
-
-	public void setRegDate(Date regDate) {
-		this.regDate = regDate;
-	}
-
-	public long getTeamId() {
-		return teamId;
-	}
-
-	public void setTeamId(long teamId) {
-		this.teamId = teamId;
-	}
-
-	@Override
-	public String toString() {
-		return "Game [gameNo=" + gameNo + ", gameId=" + gameId + ", summoner=" + summoner + ", playNotification="
-				+ playNotification + ", resultNotification=" + resultNotification + ", regDate=" + regDate + ", teamId="
-				+ teamId + "]";
-	}
-	
-	
-	
 }

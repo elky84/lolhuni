@@ -6,8 +6,11 @@ import com.lol.tracer.model.Target;
 
 public interface TargetService {
 
-	Target registTarget(String name, String summonerName);
+	Target registTarget(String summonerName);
+
 	List<Target> getTargets();
-	void removeTarget(long summonerId,int userNo);
+
+	void removeTarget(long summonerId);
+
 	List<Target> getTargetsBySummonerId(long summonerId);
 }

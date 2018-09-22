@@ -6,7 +6,6 @@ import java.util.List;
 import com.lol.tracer.model.Champion;
 import com.lol.tracer.model.Game;
 import com.lol.tracer.model.Target;
-import com.lol.tracer.model.User;
 import com.lol.tracer.model.lol.Summoner;
 import com.lol.tracer.repository.GameRepository;
 import org.slf4j.Logger;
@@ -35,10 +34,7 @@ public class GameServiceImpl implements GameService {
 	
 	@Autowired
 	LoLService lolService;
-	
-	@Autowired
-	UserService userService;
-	
+
 	@Autowired
 	ChampionService championService;
 	
@@ -62,7 +58,8 @@ public class GameServiceImpl implements GameService {
 		try {
 			game = gameRepository.findByGameIdAndSummonerAndPlayNotification(gameId,summoner, notification);
 		} catch (Exception e) {
-			
+			e.printStackTrace();
+			logger.error(e.toString());
 		}
 		
 		return game;
@@ -78,7 +75,8 @@ public class GameServiceImpl implements GameService {
 		try {
 			games = gameRepository.findBySummonerAndPlayNotificationAndResultNotification(summoner, notification,notification2);
 		} catch (Exception e) {
-			
+			e.printStackTrace();
+			logger.error(e.toString());
 		}
 		
 		return games;
@@ -144,22 +142,16 @@ public class GameServiceImpl implements GameService {
 		
 		for (CurrentGameParticipant participant : gameInfo.getParticipants()) {
 			if (participant.getSummonerId() == summoner.getId()) {
-				Champion champion = championService.getChampionInfo((int) participant.getChampionId());
+				Champion champion = championService.getChampionInfo(participant.getChampionId());
 				championName = champion.getName();
-				championImageUrl = lolImgUrl + champion.getChampionKey() + "_0.jpg";
+				championImageUrl = lolImgUrl + champion.getChampionId() + "_0.jpg";
 			}
 		}
 		
 		logger.debug("### {}님은 현재 {}(으)로 게임 중입니다.",summoner.getName(),championName);
 		String message = summoner.getName() + "님은 현재 " + championName + "(으)로 게임 중입니다.";
-		for (Target target : targets) {
-			User user = userService.getUser(target.getUserNo());
-			if (user != null) {
-				lolService.sendLineMessage(message,championImageUrl);
-			}
-					
-		}
-		
+		lolService.sendLineMessage(message,championImageUrl);
+
 		saveGame(gameInfo,summoner);
 	}
 	
@@ -175,7 +167,6 @@ public class GameServiceImpl implements GameService {
 		CustomTeamStats team2 = new CustomTeamStats();
 		ParticipantDto player = null;
 		int participantId = 0;
-		boolean send = false;
 		String win = "";
 		String resultImgUrl = "";
 		
@@ -198,7 +189,6 @@ public class GameServiceImpl implements GameService {
 		}
 		
 		for (ParticipantDto participant : match.getParticipants()) {
-			
 			ParticipantStatsDto stats = participant.getStats();
 			
 			if (participant.getTeamId() == 100) {
@@ -224,22 +214,10 @@ public class GameServiceImpl implements GameService {
 			}
 		}
 		
-		for (Target target : targets) {
-			
-			User user = userService.getUser(target.getUserNo());
+		lolService.sendLineMessage(title + " " + subTitle, resultImgUrl);
 
-			if (user != null) {
-				lolService.sendLineMessage(title, resultImgUrl);
-				send = true;
-			}
-			
-		}
-		
-		if (send) {
-			game.setResultNotification(Notification.PUSH);
-			saveGame(game);
-		}
-		
+		game.setResultNotification(Notification.PUSH);
+		saveGame(game);
 	}
 	
 	/**

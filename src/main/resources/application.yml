@@ -4,6 +4,7 @@ lineNotifyUrl : https://notify-api.line.me/
 lolImgUrl : http://ddragon.leagueoflegends.com/cdn/img/champion/splash/
 victoryImg : https://github.com/elky84/loltracer/blob/master/assets/victory.png?raw=true
 defeatImg : https://github.com/elky84/loltracer/blob/master/assets/defeat.png?raw=true
+championJsonURL: http://ddragon.leagueoflegends.com/cdn/8.18.2/data/ko_KR/champion.json
 
 logging:
   config: classpath:logback.xml

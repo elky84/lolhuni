@@ -1,7 +1,10 @@
 package com.lol.tracer.model.lol.staticdata;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import java.util.Map;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class ChampionListDto {
 
 	private Map<String,String> keys;

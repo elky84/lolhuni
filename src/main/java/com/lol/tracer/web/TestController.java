@@ -83,9 +83,7 @@ public class TestController {
 	@RequestMapping(value = "champion", method = RequestMethod.POST)
 	@ResponseBody
 	public ResponseEntity<?> championRegist() {
-		
-		championService.registChampionList();
-		
+		championService.registerChampionList();
 		return new ResponseEntity<>(HttpStatus.OK);
 		
 	}
@@ -100,7 +98,7 @@ public class TestController {
 		
 		Champion champion = championService.getChampionInfo(1);
 		logger.debug("### champion = {}",champion);
-		return new ResponseEntity<Champion>(champion,HttpStatus.OK);
+		return new ResponseEntity<>(champion,HttpStatus.OK);
 		
 	}
 }

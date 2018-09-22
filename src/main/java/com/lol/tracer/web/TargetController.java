@@ -7,10 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import com.lol.tracer.service.TargetService;
 
@@ -27,13 +24,13 @@ public class TargetController {
 	@RequestMapping(value = "/targets", method = RequestMethod.POST)
 	@ResponseBody
 	@ApiOperation("타겟 등록")
-	public ResponseEntity<?> registTarget(@RequestParam String name, @RequestParam String summonerName) {
+	public ResponseEntity<?> registTarget(@RequestParam String summonerName) {
 		
 		try {
-			Target target = targetService.registTarget(name, summonerName);
+			Target target = targetService.registTarget(summonerName);
 			
 			if (target != null) {
-				return new ResponseEntity<Target>(target,HttpStatus.CREATED);
+				return new ResponseEntity<>(target,HttpStatus.CREATED);
 			} else {
 				return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 			}
@@ -55,31 +52,9 @@ public class TargetController {
 		
 		try {
 			List<Target> targets = targetService.getTargets();
-			return new ResponseEntity<List<Target>>(targets,HttpStatus.OK);
+			return new ResponseEntity<>(targets,HttpStatus.OK);
 		} catch (Exception e) {
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
-	
-//	/**
-//	 * 타겟 상세 정보
-//	 * @param targetNo
-//	 * @return
-//	 */
-//	@RequestMapping(value = "/targets/{targetNo}", method = RequestMethod.GET)
-//	@ResponseBody
-//	@ApiOperation("타겟 상세정보")
-//	public ResponseEntity<?> userInfo(@PathVariable long targetNo) {
-//		
-//		try {
-//			Target target = targetService.getTarget(targetNo);
-//			if (target != null) {
-//				return new ResponseEntity<Target>(target,HttpStatus.OK);
-//			} else {
-//				return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-//			}
-//		} catch (Exception e) {
-//			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-//		}
-//	}
 }

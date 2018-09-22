@@ -31,6 +31,9 @@ public class LoLServiceImpl implements LoLService {
     @Value("${lineNotifyAccessToken}")
     String lineNotifyAccessToken;
 
+    @Value("${championJsonURL}")
+    String championJsonURL;
+
     @Autowired
     ApiKeyService apiKeyService;
 
@@ -148,11 +151,9 @@ public class LoLServiceImpl implements LoLService {
     @Override
     public ChampionListDto getChampionList() {
         ChampionListDto championList = null;
-        String lolApiKey = apiKeyService.getApiKeyByKeyName("lol").getKeyValue();
-        String url = baseUrl + "/lol/static-data/v3/champions/?locale=ko_KR&tags=image&api_key=" + lolApiKey;
 
         try {
-            String result = HttpConnectionUtil.connectGetJsonForLoL(url);
+            String result = HttpConnectionUtil.connectGetJsonForLoL(championJsonURL);
 
             if (result != null && result.length() > 0) {
                 championList = (ChampionListDto) JsonConvertUtil.jsonConvertToObject(result, ChampionListDto.class);

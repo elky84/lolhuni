@@ -6,7 +6,6 @@ import javax.transaction.Transactional;
 
 import com.lol.tracer.model.Target;
 import com.lol.tracer.model.TargetPk;
-import com.lol.tracer.model.User;
 import com.lol.tracer.model.lol.Summoner;
 import com.lol.tracer.repository.TargetRepository;
 import org.slf4j.Logger;
@@ -23,24 +22,17 @@ public class TargetServiceImpl implements TargetService{
 	SummonerService summonerSerivce;
 	
 	@Autowired
-	UserService userService;
-	
-	@Autowired
     TargetRepository targetRepository;
 	
 	@Override
 	@Transactional
-	public Target registTarget(String name, String summonerName) {
-		
-		User user = userService.getUser(name);
+	public Target registTarget(String summonerName) {
+
 		Summoner summoner = summonerSerivce.summonerInfo(summonerName);
-		
-		logger.debug("### user = {}",user);
 		logger.debug("### summoner = {}",summoner);
 		
 		Target target = new Target();
 		target.setSummonerId(summoner.getId());
-		target.setUserNo(user.getUserNo());
 	
 		target = targetRepository.save(target);
 		
@@ -53,22 +45,20 @@ public class TargetServiceImpl implements TargetService{
 	}
 	
 	@Override
-	public void removeTarget(long summonerId,int userNo) {
+	public void removeTarget(long summonerId) {
 		try {
 			TargetPk targetPk = new TargetPk();
 			targetPk.setSummonerId(summonerId);
-			targetPk.setUserNo(userNo);
 			targetRepository.delete(targetPk);
 		} catch (Exception e) {
-			
+			e.printStackTrace();
+			logger.error(e.toString());
 		}
 		
 	}
 	
 	@Override
 	public List<Target> getTargetsBySummonerId(long summonerId) {
-		List<Target> targets = targetRepository.findBySummonerId(summonerId);
-		
-		return targets;
+		return targetRepository.findBySummonerId(summonerId);
 	}
 }

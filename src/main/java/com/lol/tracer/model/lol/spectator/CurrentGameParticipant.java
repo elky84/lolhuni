@@ -13,12 +13,19 @@ import java.util.List;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class CurrentGameParticipant {
 	private long teamId;
+
 	private long spell1Id;
+
 	private long spell2Id;
+
 	private long championId;
+
 	private long profileIconId;
+
 	private String summonerName;
+
 	private boolean bot;
+
 	private long summonerId;
 
 	private List<Object> gameCustomizationObjects;

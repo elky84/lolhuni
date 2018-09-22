@@ -57,7 +57,7 @@ public class SummonerController {
 		
 		try {
 			List<Summoner> summoners = summonerService.summonerList();
-			return new ResponseEntity<List<Summoner>>(summoners,HttpStatus.OK);
+			return new ResponseEntity<>(summoners,HttpStatus.OK);
 		} catch (Exception e) {
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
@@ -76,7 +76,7 @@ public class SummonerController {
 		try {
 			Summoner summoner = summonerService.summonerInfo(summonerName);
 			if (summoner != null) {
-				return new ResponseEntity<Summoner>(summoner,HttpStatus.OK);
+				return new ResponseEntity<>(summoner,HttpStatus.OK);
 			} else {
 				return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 			}

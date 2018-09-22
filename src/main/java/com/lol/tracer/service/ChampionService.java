@@ -4,6 +4,7 @@ import com.lol.tracer.model.Champion;
 
 public interface ChampionService {
 
-	void registChampionList();
-	Champion getChampionInfo(int championId);
+	void registerChampionList();
+
+	Champion getChampionInfo(long key);
 }

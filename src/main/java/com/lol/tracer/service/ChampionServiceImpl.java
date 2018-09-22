@@ -30,7 +30,7 @@ public class ChampionServiceImpl implements ChampionService{
 	 */
 	@Override
 	@Transactional
-	public void registChampionList() {
+	public void registerChampionList() {
 		
 		ChampionListDto championDto = lolService.getChampionList();
 		
@@ -39,27 +39,23 @@ public class ChampionServiceImpl implements ChampionService{
 			String key = keys.next();
 			ChampionDto ChampionData = championDto.getData().get(key);
 			
-			Champion champion = championRepository.findOne(ChampionData.getId());
+			Champion champion = championRepository.findOne(ChampionData.getKey());
 			if (champion == null) {
 				champion = new Champion();
 			}
 			champion.setChampionKey(ChampionData.getKey());
-			champion.setId(ChampionData.getId());
+			champion.setChampionId(ChampionData.getId());
 			champion.setName(ChampionData.getName());
-			champion.setEnName(ChampionData.getKey());
-			
+
 			championRepository.save(champion);
-			
 		}
-		
-		
 	}
 	
 	/**
 	 * 챔피언 정보 불러오기
 	 */
 	@Override
-	public Champion getChampionInfo(int championId) {
+	public Champion getChampionInfo(long championId) {
 		Champion champion = null;
 		try {
 			champion = championRepository.findOne(championId);

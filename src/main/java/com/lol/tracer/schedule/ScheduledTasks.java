@@ -18,7 +18,6 @@ import com.lol.tracer.service.ApiKeyService;
 import com.lol.tracer.service.GameService;
 import com.lol.tracer.service.LoLService;
 import com.lol.tracer.service.TargetService;
-import com.lol.tracer.service.UserService;
 
 @Component
 public class ScheduledTasks {
@@ -36,10 +35,7 @@ public class ScheduledTasks {
 	 
 	 @Autowired
 	 TargetService targetService;
-	 
-	 @Autowired
-	 UserService userService;
-	 
+
 	 @Autowired
 	 GameService gameService;
 	 
