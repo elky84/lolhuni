@@ -5,7 +5,6 @@ import java.util.List;
 import javax.transaction.Transactional;
 
 import com.lol.tracer.model.Target;
-import com.lol.tracer.model.TargetPk;
 import com.lol.tracer.model.lol.Summoner;
 import com.lol.tracer.repository.TargetRepository;
 import org.slf4j.Logger;
@@ -26,16 +25,14 @@ public class TargetServiceImpl implements TargetService{
 	
 	@Override
 	@Transactional
-	public Target registTarget(String summonerName) {
-
+	public Target registerTarget(String summonerName) {
 		Summoner summoner = summonerSerivce.summonerInfo(summonerName);
 		logger.debug("### summoner = {}",summoner);
 		
 		Target target = new Target();
-		target.setSummonerId(summoner.getId());
-	
+		target.setSummoner(summoner);
+
 		target = targetRepository.save(target);
-		
 		return target;
 	}
 	
@@ -45,16 +42,13 @@ public class TargetServiceImpl implements TargetService{
 	}
 	
 	@Override
-	public void removeTarget(long summonerId) {
+	public void removeTarget(long targetId) {
 		try {
-			TargetPk targetPk = new TargetPk();
-			targetPk.setSummonerId(summonerId);
-			targetRepository.delete(targetPk);
+			targetRepository.delete(targetId);
 		} catch (Exception e) {
 			e.printStackTrace();
 			logger.error(e.toString());
 		}
-		
 	}
 	
 	@Override
