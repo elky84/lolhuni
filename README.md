@@ -19,4 +19,4 @@
     ```
 
 ## 예시
-![](./assets/example.jpg)
+![example](./assets/example.jpg)
