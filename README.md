@@ -16,7 +16,7 @@
 - JDK : 1.8
 - Maven : 3.3.9
 - DB : MariaDB 10.1
-- 라인 계정
+- Slack 계정
 
 ## Getting Started
 1. src/main/resources/application.yml 파일 수정
