@@ -14,7 +14,6 @@ import org.springframework.stereotype.Component;
 
 import com.lol.tracer.model.data.Notification;
 import com.lol.tracer.model.lol.spectator.CurrentGameInfo;
-import com.lol.tracer.service.ApiKeyService;
 import com.lol.tracer.service.GameService;
 import com.lol.tracer.service.LoLService;
 import com.lol.tracer.service.TargetService;
@@ -26,10 +25,7 @@ public class ScheduledTasks {
 	 
 	 @Autowired
 	 LoLService lolService;
-	 
-	 @Autowired
-	 ApiKeyService apiKeyService;
-	 
+
 	 @Autowired
      SummonerService summonerService;
 	 

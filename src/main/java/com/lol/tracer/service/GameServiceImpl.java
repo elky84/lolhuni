@@ -150,7 +150,7 @@ public class GameServiceImpl implements GameService {
 		
 		logger.debug("### {}님은 현재 {}(으)로 게임 중입니다.",summoner.getName(),championName);
 		String message = summoner.getName() + "님은 현재 " + championName + "(으)로 게임 중입니다.";
-		lolService.sendLineMessage(message,championImageUrl);
+		lolService.sendSlackMessage(message,championImageUrl);
 
 		saveGame(gameInfo,summoner);
 	}
@@ -214,7 +214,7 @@ public class GameServiceImpl implements GameService {
 			}
 		}
 		
-		lolService.sendLineMessage(title + "\n" + subTitle, resultImgUrl);
+		lolService.sendSlackMessage(title + "\n" + subTitle, resultImgUrl);
 
 		game.setResultNotification(Notification.PUSH);
 		saveGame(game);

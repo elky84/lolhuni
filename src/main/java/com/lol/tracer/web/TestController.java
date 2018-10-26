@@ -67,11 +67,11 @@ public class TestController {
 	 * @param message
 	 * @return
 	 */
-	@ApiOperation("라인 메시지 테스트")
-	@RequestMapping(value = "lineMessage", method = RequestMethod.POST)
+	@ApiOperation("슬랙 메시지 테스트")
+	@RequestMapping(value = "slackMessage", method = RequestMethod.POST)
 	@ResponseBody
-	public ResponseEntity<?> sendLineMessage(@RequestBody String message, @RequestParam String imgUrl) {
-		lolService.sendLineMessage(message, imgUrl);
+	public ResponseEntity<?> sendSlackMessage(@RequestBody String message, @RequestParam String imgUrl) {
+		lolService.sendSlackMessage(message, imgUrl);
 		return new ResponseEntity<>(HttpStatus.OK);
 		
 	}

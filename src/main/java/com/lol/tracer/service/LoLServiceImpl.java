@@ -2,6 +2,8 @@ package com.lol.tracer.service;
 
 import com.lol.tracer.model.lol.RecentGamesDto;
 import com.lol.tracer.model.lol.Summoner;
+import com.lol.tracer.model.slack.SlackAttachment;
+import com.lol.tracer.model.slack.SlackNotification;
 import com.lol.tracer.util.HttpConnectionUtil;
 import com.lol.tracer.util.JsonConvertUtil;
 import org.slf4j.Logger;
@@ -15,6 +17,7 @@ import com.lol.tracer.model.lol.spectator.CurrentGameInfo;
 import com.lol.tracer.model.lol.staticdata.ChampionListDto;
 
 import java.io.UnsupportedEncodingException;
+import java.net.URI;
 import java.net.URLEncoder;
 
 @Service
@@ -25,11 +28,8 @@ public class LoLServiceImpl implements LoLService {
     @Value("${baseUrl}")
     String baseUrl;
 
-    @Value("${lineNotifyUrl}")
-    String lineNotifyUrl;
-
-    @Value("${lineNotifyAccessToken}")
-    String lineNotifyAccessToken;
+    @Value("${slack.incomming.webhooks.url}")
+    String slackIncomingWebHooksUrl;
 
     @Value("${championJsonURL}")
     String championJsonURL;
@@ -46,8 +46,8 @@ public class LoLServiceImpl implements LoLService {
         String lolApiKey = apiKeyService.getApiKeyByKeyName("lol").getKeyValue();
 
         Summoner summoner = null;
-        String url = baseUrl + "lol/summoner/v3/summoners/by-name/" + summonerName + "?api_key=" + lolApiKey;
         try {
+            String url = baseUrl + "lol/summoner/v3/summoners/by-name/" + summonerName.replaceAll(" ", "") + "?api_key=" + lolApiKey;
             String result = HttpConnectionUtil.connectGetJson(url);
 
             if (result != null && result.length() > 0) {
@@ -72,7 +72,7 @@ public class LoLServiceImpl implements LoLService {
         String url = baseUrl + "/lol/spectator/v3/active-games/by-summoner/" + summonerId + "?api_key=" + lolApiKey;
 
         try {
-            String result = HttpConnectionUtil.connectGetJsonForLoL(url);
+            String result = HttpConnectionUtil.connectGetJson(url);
 
             if (result != null && result.length() > 0) {
                 gameInfo = (CurrentGameInfo) JsonConvertUtil.jsonConvertToObject(result, CurrentGameInfo.class);
@@ -89,14 +89,15 @@ public class LoLServiceImpl implements LoLService {
      * 메시지 보내기
      */
     @Override
-    public void sendLineMessage(String message, String imgUrl) {
-        try {
-            String url = lineNotifyUrl + "api/notify?message=" + URLEncoder.encode(message, "UTF-8") + "&imageThumbnail=" + imgUrl + "&imageFullsize=" + imgUrl;
-            logger.debug("### url = {}", url);
-            HttpConnectionUtil.connectPostJsonForLineMessageSend(url, lineNotifyAccessToken, message);
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
+    public void sendSlackMessage(String message, String imgUrl) {
+        SlackNotification notification = new SlackNotification()
+                .setText(message)
+                .setUserName("LOLTracer");
+
+        notification.getAttachments().add(new SlackAttachment().setImageUrl(imgUrl));
+
+        logger.debug("### url = {}", slackIncomingWebHooksUrl);
+        HttpConnectionUtil.connectPostJsonForSlackMessageSend(slackIncomingWebHooksUrl, notification);
     }
 
     /**
@@ -108,7 +109,7 @@ public class LoLServiceImpl implements LoLService {
         String lolApiKey = apiKeyService.getApiKeyByKeyName("lol").getKeyValue();
         String url = baseUrl + "api/lol/KR/v1.3/game/by-summoner/" + summonerId + "/recent?api_key=" + lolApiKey;
         try {
-            String result = HttpConnectionUtil.connectGetJsonForLoL(url);
+            String result = HttpConnectionUtil.connectGetJson(url);
 
             if (result != null && result.length() > 0) {
                 recentGame = (RecentGamesDto) JsonConvertUtil.jsonConvertToObject(result, RecentGamesDto.class);
@@ -131,7 +132,7 @@ public class LoLServiceImpl implements LoLService {
         String lolApiKey = apiKeyService.getApiKeyByKeyName("lol").getKeyValue();
         String url = baseUrl + "lol/match/v3/matches/" + matchId + "?api_key=" + lolApiKey;
         try {
-            String result = HttpConnectionUtil.connectGetJsonForLoL(url);
+            String result = HttpConnectionUtil.connectGetJson(url);
 
             if (result != null && result.length() > 0) {
                 matchDto = (MatchDto) JsonConvertUtil.jsonConvertToObject(result, MatchDto.class);
@@ -153,7 +154,7 @@ public class LoLServiceImpl implements LoLService {
         ChampionListDto championList = null;
 
         try {
-            String result = HttpConnectionUtil.connectGetJsonForLoL(championJsonURL);
+            String result = HttpConnectionUtil.connectGetJson(championJsonURL);
 
             if (result != null && result.length() > 0) {
                 championList = (ChampionListDto) JsonConvertUtil.jsonConvertToObject(result, ChampionListDto.class);

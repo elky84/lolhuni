@@ -12,7 +12,7 @@ public interface LoLService {
 	
 	CurrentGameInfo getGameInfo(long summonerId);
 	
-	void sendLineMessage(String message, String imgUrl);
+	void sendSlackMessage(String message, String imgUrl);
 	
 	RecentGamesDto recentGameInfo(long summonerId);
 	
