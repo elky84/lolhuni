@@ -169,6 +169,7 @@ public class GameServiceImpl implements GameService {
 		int participantId = 0;
 		String win = "";
 		String resultImgUrl = "";
+		String championName = "";
 		
 		for (TeamStatsDto teamStat : match.getTeams()) {
 			if (game.getTeamId() == teamStat.getTeamId()) {
@@ -199,11 +200,13 @@ public class GameServiceImpl implements GameService {
 			
 			if (participant.getParticipantId() == participantId) {
 				player = participant;
+
+				Champion champion = championService.getChampionInfo(player.getChampionId());
+				championName = champion.getName();
 			}
-			
 		}
-		
-		String title = summoner.getName() + "님이 " + win  + "하셨습니다.";
+
+		String title = summoner.getName() + "님이 챔피언 "+ championName + "(으)로" + win  + "하셨습니다.";
 		String subTitle = "";
 		
 		if (player != null) {
