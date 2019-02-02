@@ -52,7 +52,7 @@ public class TargetServiceImpl implements TargetService{
 	}
 	
 	@Override
-	public List<Target> getTargetsBySummonerId(long summonerId) {
+	public List<Target> getTargetsBySummonerId(String summonerId) {
 		return targetRepository.findBySummonerId(summonerId);
 	}
 }

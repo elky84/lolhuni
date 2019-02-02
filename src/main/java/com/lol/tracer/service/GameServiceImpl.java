@@ -95,7 +95,7 @@ public class GameServiceImpl implements GameService {
 		game.setRegDate(new Date());
 		
 		for (CurrentGameParticipant gameParticipant : gameInfo.getParticipants()) {
-			if (gameParticipant.getSummonerId() == summoner.getId()) {
+			if ( gameParticipant.getSummonerId().equals(summoner.getId())) {
 				game.setTeamId(gameParticipant.getTeamId());
 			}
 		}
@@ -141,7 +141,7 @@ public class GameServiceImpl implements GameService {
 		String championImageUrl = "";
 		
 		for (CurrentGameParticipant participant : gameInfo.getParticipants()) {
-			if (participant.getSummonerId() == summoner.getId()) {
+			if (summoner.getId().equals(participant.getSummonerId())) {
 				Champion champion = championService.getChampionInfo(participant.getChampionId());
 				championName = champion.getName();
 				championImageUrl = lolImgUrl + champion.getChampionId() + "_0.jpg";
@@ -184,7 +184,7 @@ public class GameServiceImpl implements GameService {
 		}
 		
 		for (ParticipantIdentityDto participantIdentity : match.getParticipantIdentities()) {
-			if ((participantIdentity.getPlayer() != null) && (summoner.getId() == participantIdentity.getPlayer().getSummonerId())) {
+			if ((participantIdentity.getPlayer() != null) && (summoner.getId().equals(participantIdentity.getPlayer().getSummonerId()))) {
 				participantId = participantIdentity.getParticipantId();
 			}
 		}

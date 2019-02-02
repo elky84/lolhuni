@@ -12,5 +12,5 @@ public interface TargetService {
 
 	void removeTarget(long targetId);
 
-	List<Target> getTargetsBySummonerId(long summonerId);
+	List<Target> getTargetsBySummonerId(String summonerId);
 }

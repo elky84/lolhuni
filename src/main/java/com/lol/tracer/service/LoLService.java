@@ -10,11 +10,11 @@ public interface LoLService {
 	
 	Summoner getSummonerInfo(String summonerName);
 	
-	CurrentGameInfo getGameInfo(long summonerId);
+	CurrentGameInfo getGameInfo(String summonerId);
 	
 	void sendSlackMessage(String message, String imgUrl);
 	
-	RecentGamesDto recentGameInfo(long summonerId);
+	RecentGamesDto recentGameInfo(String summonerId);
 	
 	MatchDto getMatchInfo(long matchId);
 

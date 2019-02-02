@@ -23,7 +23,7 @@ public class CurrentGameParticipant {
 
 	private boolean bot;
 
-	private long summonerId;
+	private String summonerId;
 
 	private List<Object> gameCustomizationObjects;
 	private Perk perks;

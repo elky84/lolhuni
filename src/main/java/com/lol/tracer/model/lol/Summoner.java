@@ -15,13 +15,16 @@ import javax.persistence.Id;
 public class Summoner {
 	@Id
 	@Column
-	private long id;
+	private String id;
 
 	@Column
-	private long accountId;
+	private String accountId;
 
 	@Column
 	private String name;
+
+	@Column
+	private String puuid;
 
 	@Column
 	private int profileIconId;

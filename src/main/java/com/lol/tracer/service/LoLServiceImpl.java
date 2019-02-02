@@ -47,7 +47,7 @@ public class LoLServiceImpl implements LoLService {
 
         Summoner summoner = null;
         try {
-            String url = baseUrl + "lol/summoner/v3/summoners/by-name/" + summonerName.replaceAll(" ", "") + "?api_key=" + lolApiKey;
+            String url = baseUrl + "lol/summoner/v4/summoners/by-name/" + summonerName.replaceAll(" ", "") + "?api_key=" + lolApiKey;
             String result = HttpConnectionUtil.connectGetJson(url);
 
             if (result != null && result.length() > 0) {
@@ -66,10 +66,10 @@ public class LoLServiceImpl implements LoLService {
      * 현재 게임 정보
      */
     @Override
-    public CurrentGameInfo getGameInfo(long summonerId) {
+    public CurrentGameInfo getGameInfo(String summonerId) {
         String lolApiKey = apiKeyService.getApiKeyByKeyName("lol").getKeyValue();
         CurrentGameInfo gameInfo = null;
-        String url = baseUrl + "/lol/spectator/v3/active-games/by-summoner/" + summonerId + "?api_key=" + lolApiKey;
+        String url = baseUrl + "lol/spectator/v4/active-games/by-summoner/" + summonerId + "?api_key=" + lolApiKey;
 
         try {
             String result = HttpConnectionUtil.connectGetJson(url);
@@ -104,10 +104,10 @@ public class LoLServiceImpl implements LoLService {
      * 최근 게임 정보
      */
     @Override
-    public RecentGamesDto recentGameInfo(long summonerId) {
+    public RecentGamesDto recentGameInfo(String summonerId) {
         RecentGamesDto recentGame = null;
         String lolApiKey = apiKeyService.getApiKeyByKeyName("lol").getKeyValue();
-        String url = baseUrl + "api/lol/KR/v1.3/game/by-summoner/" + summonerId + "/recent?api_key=" + lolApiKey;
+        String url = baseUrl + "lol/match/v4/matchlists/by-account/" + summonerId + "?api_key=" + lolApiKey;
         try {
             String result = HttpConnectionUtil.connectGetJson(url);
 
@@ -130,7 +130,7 @@ public class LoLServiceImpl implements LoLService {
     public MatchDto getMatchInfo(long matchId) {
         MatchDto matchDto = null;
         String lolApiKey = apiKeyService.getApiKeyByKeyName("lol").getKeyValue();
-        String url = baseUrl + "lol/match/v3/matches/" + matchId + "?api_key=" + lolApiKey;
+        String url = baseUrl + "lol/match/v4/matches/" + matchId + "?api_key=" + lolApiKey;
         try {
             String result = HttpConnectionUtil.connectGetJson(url);
 

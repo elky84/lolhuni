@@ -12,7 +12,8 @@
             "console": "internalConsole",
             "stopOnEntry": false,
             "mainClass": "",
-            "args": ""
+            "args": "",
+            "vmArgs": "-Dspring.profiles.active=local"
         },
         {
             "type": "java",
@@ -23,7 +24,8 @@
             "stopOnEntry": false,
             "mainClass": "com.lol.tracer.Application",
             "args": "",
-            "projectName": "loltracer"
+            "projectName": "loltracer",
+            "vmArgs": "-Dspring.profiles.active=local"
         },
         {
             "type": "java",

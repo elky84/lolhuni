@@ -10,8 +10,8 @@ public class PlayerDto {
 	private String summonerName;
 	private String matchHistoryUri;
 	private String platformId;
-	private long currentAccountId;
+	private String currentAccountId;
 	private int profileIcon;
-	private long summonerId;
-	private long accountId;
+	private String summonerId;
+	private String accountId;
 }

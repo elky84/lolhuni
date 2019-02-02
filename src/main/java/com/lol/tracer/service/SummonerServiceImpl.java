@@ -23,9 +23,7 @@ public class SummonerServiceImpl implements SummonerService{
 	public Summoner registSummoner(String summonerName) {
 		Summoner summoner = null;
 		
-		if (checkExistsSummoner(summonerName)) {
-			
-		} else {
+		if ( !checkExistsSummoner(summonerName) ) {
 			summoner = lolService.getSummonerInfo(summonerName);
 			if (summoner != null)
 				summonerRepository.save(summoner);
