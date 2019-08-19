@@ -31,6 +31,12 @@ public class LoLServiceImpl implements LoLService {
     @Value("${slack.incomming.webhooks.url}")
     String slackIncomingWebHooksUrl;
 
+    @Value("${slack.incomming.webhooks.channel}")
+    String slackIncomingWebHooksChannel;
+
+    @Value("${slack.incomming.webhooks.icon-url}")
+    String slackIncomingWebHooksIconUrl;
+
     @Value("${championJsonURL}")
     String championJsonURL;
 
@@ -92,6 +98,8 @@ public class LoLServiceImpl implements LoLService {
     public void sendSlackMessage(String message, String imgUrl) {
         SlackNotification notification = new SlackNotification()
                 .setText(message)
+                .setIconUrl(slackIncomingWebHooksIconUrl)
+                .setChannel(slackIncomingWebHooksChannel)
                 .setUserName("LOLTracer");
 
         notification.getAttachments().add(new SlackAttachment().setImageUrl(imgUrl));

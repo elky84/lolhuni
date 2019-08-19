@@ -30,7 +30,7 @@
     <logger name="org.quartz.core" level="INFO"/>
     <logger name="org.h2.server.web" level="INFO"/>
 
-    <root level="DEBUG">
+    <root level="INFO">
         <appender-ref ref="dailyRollingFileAppender" />
         <appender-ref ref="STDOUT" />
     </root>

@@ -1,37 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE configuration>
 <configuration>
-	<include resource="org/springframework/boot/logging/logback/base.xml"/>
+    <include resource="org/springframework/boot/logging/logback/base.xml"/>
 
-	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
-		<layout class="ch.qos.logback.classic.PatternLayout">
-			<Pattern>%d{yyyy:MM:dd HH:mm:ss.SSS} %-5level %logger{36} - %msg%n</Pattern>
-		</layout>
-	</appender>
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <Pattern>%d{yyyy:MM:dd HH:mm:ss.SSS} %-5level %logger{36} - %msg%n</Pattern>
+        </layout>
+    </appender>
 
-	<appender name="dailyRollingFileAppender"
-			  class="ch.qos.logback.core.rolling.RollingFileAppender">
-		<prudent>true</prudent>
-		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-			<fileNamePattern>logs/log_%d{yyyy-MM-dd}.log</fileNamePattern>
-		</rollingPolicy>
-		<filter class="ch.qos.logback.classic.filter.ThresholdFilter">
-			<level>INFO</level>
-		</filter>
+    <appender name="dailyRollingFileAppender"
+              class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <prudent>true</prudent>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>logs/log_%d{yyyy-MM-dd}.log</fileNamePattern>
+        </rollingPolicy>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>INFO</level>
+        </filter>
 
-		<encoder>
-			<pattern>%d{yyyy:MM:dd HH:mm:ss.SSS} %-5level --- [%thread] %logger{35} : %msg %n</pattern>
-		</encoder>
-	</appender>
+        <encoder>
+            <pattern>%d{yyyy:MM:dd HH:mm:ss.SSS} %-5level --- [%thread] %logger{35} : %msg %n</pattern>
+        </encoder>
+    </appender>
 
-	<logger name="org.springframework.web" level="INFO"/>
-	<logger name="org.thymeleaf" level="INFO"/>
-	<logger name="org.hibernate.SQL" level="INFO"/>
-	<logger name="org.quartz.core" level="INFO"/>
-	<logger name="org.h2.server.web" level="INFO"/>
+    <logger name="org.springframework.web" level="INFO"/>
+    <logger name="org.thymeleaf" level="INFO"/>
+    <logger name="org.hibernate.SQL" level="INFO"/>
+    <logger name="org.quartz.core" level="INFO"/>
+    <logger name="org.h2.server.web" level="INFO"/>
 
-	<root level="DEBUG">
-		<appender-ref ref="dailyRollingFileAppender" />
-		<appender-ref ref="STDOUT" />
-	</root>
+    <root level="INFO">
+        <appender-ref ref="dailyRollingFileAppender" />
+        <appender-ref ref="STDOUT" />
+    </root>
 </configuration>

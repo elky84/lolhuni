@@ -1,5 +1,10 @@
 baseUrl : https://kr.api.riotgames.com/
-slack.incomming.webhooks.url :
+slack:
+  incomming:
+    webhooks: 
+      url: 
+      channel: 
+      icon-url: http://2.bp.blogspot.com/-HqSOKIIV59A/U8WP4WFW28I/AAAAAAAAT5U/qTSiV9UgvUY/s1600/icon.png
 lolImgUrl : http://ddragon.leagueoflegends.com/cdn/img/champion/splash/
 victoryImg : https://github.com/elky84/loltracer/blob/master/assets/victory.png?raw=true
 defeatImg : https://github.com/elky84/loltracer/blob/master/assets/defeat.png?raw=true
@@ -25,5 +30,5 @@ spring:
   datasource:
     driverClassName: org.mariadb.jdbc.Driver
     url: jdbc:mariadb://localhost:3306/loltracer
-    username:
-    password:
+    username: 
+    password: 
