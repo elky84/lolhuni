@@ -31,3 +31,7 @@
 
 ## 예시
 ![loltracer](./loltracer.png)
+
+## mvn package
+* mvn package 시에는 test를 위해 application-test.yml 을 application.yml을 참고해 유효한 slack 정보와 datasource를 입력하셔야 합니다.
+* 다른 옵션으로는 -DskipTests 로 테스트를 패스하셔도 됩니다.

@@ -6,8 +6,8 @@ slack:
       channel: 
       icon-url: http://2.bp.blogspot.com/-HqSOKIIV59A/U8WP4WFW28I/AAAAAAAAT5U/qTSiV9UgvUY/s1600/icon.png
 lolImgUrl : http://ddragon.leagueoflegends.com/cdn/img/champion/splash/
-victoryImg : https://github.com/elky84/loltracer/blob/master/assets/victory.png?raw=true
-defeatImg : https://github.com/elky84/loltracer/blob/master/assets/defeat.png?raw=true
+victoryImg : https://www.pngitem.com/pimgs/m/119-1199430_league-of-legends-victory-png-transparent-png.png
+defeatImg : https://www.pngitem.com/pimgs/m/453-4539728_image-rights-to-riot-games-png-download-league.png
 championJsonURL: http://ddragon.leagueoflegends.com/cdn/8.18.2/data/ko_KR/champion.json
 
 

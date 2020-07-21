@@ -29,5 +29,6 @@ src/main/webapp/css/
 application-local.yml
 application-dev.yml
 application-product.yml
+application-test.yml
 
 logs/
