@@ -16,10 +16,6 @@ import com.lol.tracer.model.lol.match.MatchDto;
 import com.lol.tracer.model.lol.spectator.CurrentGameInfo;
 import com.lol.tracer.model.lol.staticdata.ChampionListDto;
 
-import java.io.UnsupportedEncodingException;
-import java.net.URI;
-import java.net.URLEncoder;
-
 @Service
 public class LoLServiceImpl implements LoLService {
 
